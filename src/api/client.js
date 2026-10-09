@@ -1,4 +1,7 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+const DEFAULT_API_BASE_URL = import.meta.env.PROD
+    ? 'https://takunbackend.onrender.com'
+    : 'http://localhost:8000'
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || DEFAULT_API_BASE_URL).replace(/\/+$/, '')
 
 export async function apiRequest(endpoint, payload = {}, options = {}) {
     const method = options.method || 'POST'
